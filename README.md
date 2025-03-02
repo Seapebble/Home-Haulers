@@ -79,7 +79,7 @@ git clone https://github.com/seapebble/home-haulers.git
 ## **License**
 This project is open-source under the MIT & GNU License.
 
-```sh
+```bash
   cd home-haulers
 ```
 
