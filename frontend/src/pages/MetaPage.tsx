@@ -15,24 +15,21 @@ const MetaPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/meta/${slug}`, { withCredentials: true }) // ✅ Allow cross-origin cookies if needed
-      .then((res) => {
-        setMeta(res.data);
-        document.title = res.data.title; // ✅ Set page title dynamically
+    console.log("Fetching metadata for:", slug); // ✅ Debug log
 
-        // ✅ Function to update meta tags
+    axios
+      .get(`https://reimagined-enigma-r4pj75q447qv256vw-5000.app.github.dev/meta/${slug}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log("API Response:", res.data); // ✅ Debug log
+        setMeta(res.data);
+        document.title = res.data.title;
+
+        // ✅ Function to update meta tags dynamically
         const updateMetaTag = (name: string, content: string) => {
           let element = document.querySelector(`meta[name='${name}']`) || document.createElement("meta");
           element.setAttribute("name", name);
-          element.setAttribute("content", content);
-          document.head.appendChild(element);
-        };
-
-        // ✅ Function to update Open Graph meta tags
-        const updateOGTag = (property: string, content: string) => {
-          let element = document.querySelector(`meta[property='${property}']`) || document.createElement("meta");
-          element.setAttribute("property", property);
           element.setAttribute("content", content);
           document.head.appendChild(element);
         };
@@ -42,6 +39,13 @@ const MetaPage: React.FC = () => {
         updateMetaTag("keywords", "moving company, home movers, professional movers, best movers");
 
         // ✅ Update Open Graph (OG) meta tags
+        const updateOGTag = (property: string, content: string) => {
+          let element = document.querySelector(`meta[property='${property}']`) || document.createElement("meta");
+          element.setAttribute("property", property);
+          element.setAttribute("content", content);
+          document.head.appendChild(element);
+        };
+
         updateOGTag("og:title", res.data.title);
         updateOGTag("og:description", res.data.description);
         updateOGTag("og:image", res.data.image);

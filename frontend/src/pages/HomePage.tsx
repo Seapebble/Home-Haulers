@@ -1,9 +1,11 @@
 import React from "react";
+import QuoteForm from "../components/QuoteForm";
 
 const HomePage: React.FC = () => {
   return (
-    <div className="flex items-center justify-center h-screen">
-      <h1 className="text-4xl font-bold text-blue-600">Welcome to Home Haulers!</h1>
+    <div className="p-6">
+      <h1 className="text-4xl font-bold text-center mb-6">Welcome to OC Pro Movers</h1>
+      <QuoteForm />
     </div>
   );
 };

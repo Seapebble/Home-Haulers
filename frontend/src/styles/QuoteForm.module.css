@@ -1,0 +1,62 @@
+/* Container styling */
+.formContainer {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title Styling */
+.title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Input Fields */
+.inputField {
+  width: 85%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border 0.2s;
+  text-align: center;  /* ✅ Centers user text */
+}
+
+.inputField::placeholder {
+  text-align: center; /* ✅ Centers placeholder text */
+  color: #888; /* Light gray placeholder */
+}
+
+.inputField:focus {
+  border-color: #007bff;
+}
+
+/* Textarea */
+.textarea {
+  height: 100px;
+  resize: none;
+}
+
+/* Submit Button */
+.submitButton {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}
