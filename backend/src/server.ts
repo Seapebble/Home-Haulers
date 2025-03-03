@@ -1,4 +1,4 @@
-import express from "express";
+import express from "express"; 
 import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import { createClient } from "redis";
 import cookieParser from "cookie-parser";
 import path from "path";
+import quoteRoutes from "./routes/quoteRoutes";
 
 // ✅ Manually specify the .env path
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
@@ -15,17 +16,43 @@ const app = express();
 
 // ✅ Allowed Frontend Domains
 const allowedOrigins = [
-    "http://localhost:5173",  // Local Dev Frontend
-    "https://reimagined-enigma-r4pj75q447qv256vw-5173.app.github.dev", // GitHub Codespace Frontend
-];
-
+    "https://reimagined-enigma-r4pj75q447qv256vw-5173.app.github.dev",
+    "http://localhost:5173"
+  ];
+console
 // ✅ CORS Middleware - Allow Requests from Frontend
 app.use(cors({
-    origin: allowedOrigins,
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("CORS policy does not allow this origin"), false);
+        }
+    },
     credentials: true,
-    optionsSuccessStatus: 200,
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
+// // ✅ Handle Preflight Requests (OPTIONS)
+app.options("*", cors());
+
+// // ✅ Handle Preflight Requests (OPTIONS)
+// app.options("*", (req, res) => {
+//     res.sendStatus(204);
+// });
+
+// ✅ Middleware to Set Headers on Every Response
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (origin && allowedOrigins.includes(origin)) {
+      res.header("Access-Control-Allow-Origin", origin);
+    }
+    res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    next();
+});
 
 // ✅ Security Middleware
 app.use(helmet({
@@ -33,7 +60,7 @@ app.use(helmet({
     crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
 
-// ✅ Fix: Enable Trust Proxy for rate limit to work correctly
+//✅ Fix: Enable Trust Proxy for rate limit to work correctly
 app.set("trust proxy", 1); 
 
 // ✅ Rate Limiting
@@ -91,11 +118,17 @@ app.get("/meta/:slug", (req, res) => {
     });
 });
 
+// ✅ Register API routes
+app.use("/api", quoteRoutes);
+
 // ✅ Default API Route
 app.get("/", (req, res) => {
-    res.send("OC Pro Movers API is running...");
+    res.send("Welcome to the Home Haulers API!");
 });
+
 
 // ✅ Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
+export default app;

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 npm install express mongoose dotenv cors helmet express-rate-limit cookie-parser nodemailer redis jsonwebtoken multer cloudinary stripe twilio ejs
 npm install --save-dev typescript ts-node @types/express @types/node @types/cors @types/jsonwebtoken @types/mongoose
 npx tsc --init
