@@ -67,7 +67,10 @@ Home Haulers is a full-stack SEO-optimized moving company website built with Rea
 ### **1️⃣ Clone the Repository**
 ```sh
 git clone https://github.com/seapebble/home-haulers.git
-
+```
+```console
+  cd home-haulers
+```
 ## **Future Enhancements**
 - Get Started
 
@@ -78,8 +81,4 @@ git clone https://github.com/seapebble/home-haulers.git
 ---
 ## **License**
 This project is open-source under the MIT & GNU License.
-
-```console
-  cd home-haulers
-```
 
