@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: home-haulers-backend
+    runtime: node
+    region: oregon
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: REDIS_URL
+        sync: false
+    buildCommand: |
+      cd backend
+      npm install
+    startCommand: npm run dev
+    env: node
+    rootDir: backend
+
+  - type: web
+    name: home-haulers-frontend
+    runtime: static
+    region: oregon
+    plan: free
+    buildCommand: |
+      cd frontend
+      npm install
+      npm run build
+    staticPublishPath: frontend/dist
