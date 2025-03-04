@@ -18,9 +18,10 @@ services:
     env: node
     rootDir: backend
 
-  - type: static
+  - type: web
     name: home-haulers-frontend
-    runtime: static
+    # runtime: static
+    # region: oregon
     plan: free
     buildCommand: |
       cd frontend
