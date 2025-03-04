@@ -4,7 +4,7 @@ import HomePage from "./pages/HomePage";
 import MetaPage from "./pages/MetaPage";
 import AboutPage from "./pages/AboutPage";
 import NotFoundPage from "./pages/404Page";
-import SignIn from "./pages/SignInPage";
+import SignIn from "./pages/SiginPage";
 import "./index.css";
 
 const router = createBrowserRouter([

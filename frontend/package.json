@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vike dev",
-    "build": "tsc -b && vike build",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vike preview",
-    "watch": "npx tsc --watch",
-    "prerender": "vike prerender "
+    "preview": "vite preview",
+    "watch" : "npx tsc --watch",
+    "prerender": "vite prerender "
   },
   "dependencies": {
     "axios": "^1.8.1",
@@ -17,8 +17,7 @@
     "react-dom": "^19.0.0",
     "react-router": "^7.2.0",
     "react-router-dom": "^7.2.0",
-    "react-streaming": "^0.3.48",
-    "vike": "^0.4.224"
+    "react-streaming": "^0.3.48"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

@@ -3,20 +3,20 @@ import axios from "axios";
 import ComponentsQuoteForm from "../components/QuoteForm";
 import Navbar from "../components/Navbar";
 
-
 const HomePage: React.FC = () => {
   useEffect(() => {
     axios
-      .get(`https://reimagined-enigma-r4pj75q447qv256vw-5000.app.github.dev/meta/Home`, {
+      .get(`${import.meta.env.BASE_URL}/Home`, {
         withCredentials: true,
       })
       .then((res) => {
-        console.log("✅ About Page Meta Data:", res.data);
+        console.log("✅ Home Page Meta Data:", res.data);
       })
       .catch((err) => {
         console.error("API Error:", err);
       });
   }, []);
+
   return (
     <div>
       <Navbar />
@@ -28,4 +28,6 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default HomePage; // ✅ Correct Export
+export const renderServerSide = false;
+export const prerender = false;
