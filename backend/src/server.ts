@@ -1,7 +1,6 @@
 import express from "express"; 
 import cors from "cors";
 import dotenv from "dotenv";
-import { renderPage } from "vike/server";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import mongoose from "mongoose";
@@ -126,16 +125,6 @@ app.use("/api", quoteRoutes);
 app.get("/", (req, res) => {
     res.send("Welcome to the Home Haulers API!");
 });
-
-app.get("*", async (req, res, next) => {
-    const pageContextInit = { urlOriginal: req.originalUrl };
-    const pageContext = await renderPage(pageContextInit);
-  
-    if (pageContext.httpResponse === null) return next();
-  
-    const { body, statusCode, contentType } = pageContext.httpResponse;
-    res.status(statusCode).type(contentType).send(body);
-  });
   
 
 // ✅ Start Server
