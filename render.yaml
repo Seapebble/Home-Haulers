@@ -18,7 +18,7 @@ services:
     env: node
     rootDir: backend
 
-  - type: web
+  - type: static
     name: home-haulers-frontend
     # runtime: static
     # region: oregon
